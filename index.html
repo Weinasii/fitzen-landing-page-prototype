@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fit&Zen • Sport & Bien-être Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Neue+Haas+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1A7A6E;
+    --teal-light: #22C4AE;
+    --teal-pale: #E0F5F2;
+    --teal-mid: #0F4F47;
+    --dark: #0A0F0E;
+    --dark-2: #111816;
+    --dark-3: #1C2422;
+    --white: #FFFFFF;
+    --gray-1: #F5F5F7;
+    --gray-2: #E8E8ED;
+    --gray-3: #6E6E73;
+    --gray-4: #3A3A3C;
+    --amber: #F5A623;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--dark); color: var(--white); overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+  /* ── NAV — clamp responsive ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 clamp(20px, 4vw, 48px); height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,15,14,0.82);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    transition: var(--transition);
+  }
+  .nav-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; text-decoration: none; color: var(--white); display: flex; align-items: center; gap: 2px; }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.72); text-decoration: none; transition: var(--transition); letter-spacing: 0.01em; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { display: flex; align-items: center; gap: 12px; }
+  .btn-ghost { font-family: var(--font); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); background: none; border: none; cursor: pointer; padding: 8px 14px; border-radius: var(--radius-sm); transition: var(--transition); text-decoration: none; }
+  .btn-ghost:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+  .btn-primary { font-family: var(--font); font-size: 14px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 9px 20px; border-radius: 50px; transition: var(--transition); text-decoration: none; letter-spacing: 0.01em; }
+  .btn-primary:hover { background: var(--teal-light); transform: scale(1.02); }
+
+  /* ── HAMBURGER ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 110; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 1px; transition: var(--transition); transform-origin: center; }
+  /* Animation croix au clic */
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── HERO — clamp responsive ── */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(96px, 12vw, 120px) clamp(20px, 4vw, 24px) clamp(64px, 8vw, 80px); position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,122,110,0.22) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(26,122,110,0.08) 0%, transparent 60%); }
+  .hero-noise { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 256px; }
+  .hero-content { position: relative; z-index: 2; max-width: 860px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(26,122,110,0.15); border: 0.5px solid rgba(34,196,174,0.35); color: var(--teal-light); font-size: 13px; font-weight: 500; padding: 6px 16px; border-radius: 50px; margin-bottom: 32px; letter-spacing: 0.02em; animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both; }
+  .hero-badge-dot { width: 6px; height: 6px; background: var(--teal-light); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+  .hero h1 { font-size: clamp(42px, 7vw, 84px); font-weight: 700; line-height: 1.04; letter-spacing: -0.04em; margin-bottom: 24px; animation: fadeUp 0.8s 0.1s cubic-bezier(0.4,0,0.2,1) both; }
+  .hero h1 .accent { color: var(--teal-light); }
+  .hero h1 .italic { font-style: italic; font-weight: 300; font-family: 'Playfair Display', serif; }
+  .hero-sub { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 520px; margin: 0 auto 44px; letter-spacing: 0.01em; animation: fadeUp 0.8s 0.2s cubic-bezier(0.4,0,0.2,1) both; }
+  .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s cubic-bezier(0.4,0,0.2,1) both; }
+  .btn-hero-primary { font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 16px 34px; border-radius: 50px; transition: var(--transition); letter-spacing: 0.01em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-hero-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(26,122,110,0.4); }
+  .btn-hero-secondary { font-family: var(--font); font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.15); cursor: pointer; padding: 16px 34px; border-radius: 50px; transition: var(--transition); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; backdrop-filter: blur(10px); }
+  .btn-hero-secondary:hover { background: rgba(255,255,255,0.1); color: var(--white); transform: translateY(-2px); }
+  .hero-scroll { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; animation: fadeUp 1s 0.8s both; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); animation: scrollPulse 2s infinite; }
+  @keyframes scrollPulse { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+  /* ── STATS — clamp responsive ── */
+  .stats-section { padding: 0 24px; margin-top: -1px; }
+  .stats-inner { max-width: 900px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: clamp(28px, 4vw, 40px) clamp(20px, 6vw, 60px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; backdrop-filter: blur(20px); }
+  .stats-inner::before, .stats-inner::after { content: ''; position: absolute; top: 50%; transform: translateY(-50%); width: 0.5px; height: 50%; background: rgba(255,255,255,0.1); }
+  .stats-inner::before { left: 33.33%; }
+  .stats-inner::after { left: 66.66%; }
+  .stat-item { text-align: center; padding: 8px 24px; }
+  .stat-num { font-size: 44px; font-weight: 700; color: var(--teal-light); letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.45); letter-spacing: 0.01em; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 110px 24px; }
+  .section-light { background: var(--gray-1); color: var(--dark); }
+  .section-dark { background: var(--dark-2); }
+  .section-darker { background: var(--dark); }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+  .section-light .section-label { color: var(--teal); }
+  .section-title { font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 18px; }
+  .section-light .section-title { color: var(--dark); }
+  .section-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 480px; margin-bottom: 56px; }
+  .section-light .section-sub { color: rgba(10,15,14,0.5); }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .container-narrow { max-width: 860px; margin: 0 auto; }
+
+  /* ── HOW IT WORKS ── */
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .how-card { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 36px 32px; transition: var(--transition); position: relative; overflow: hidden; cursor: default; }
+  .how-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--teal-light), transparent); opacity: 0; transition: var(--transition); }
+  .how-card:hover { background: rgba(26,122,110,0.08); border-color: rgba(26,122,110,0.3); transform: translateY(-4px); }
+  .how-card:hover::before { opacity: 1; }
+  .how-num { font-size: 48px; font-weight: 700; color: rgba(26,122,110,0.2); letter-spacing: -0.05em; line-height: 1; margin-bottom: 20px; }
+  .how-icon { width: 44px; height: 44px; background: rgba(26,122,110,0.15); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+  .how-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em; }
+  .how-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ── COACHES ── */
+  .coaches-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 24px; }
+  .coaches-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .coach-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); cursor: pointer; position: relative; }
+  .coach-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.3); }
+  .coach-img { height: 240px; position: relative; overflow: hidden; }
+  .coach-img-1 { background: linear-gradient(135deg, #0F2420 0%, #1A4A42 100%); }
+  .coach-img-2 { background: linear-gradient(135deg, #0A1628 0%, #1A3A6E 100%); }
+  .coach-img-3 { background: linear-gradient(135deg, #1A120A 0%, #4A2A0A 100%); }
+  .coach-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .coach-card:hover .coach-photo { transform: scale(1.06); }
+  .coach-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.25) 100%); pointer-events: none; }
+  .coach-badge { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); color: var(--dark); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 50px; z-index: 2; }
+  .coach-info { padding: 20px 22px 24px; color: var(--dark); }
+  .coach-name { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .coach-specialty { font-size: 13px; color: var(--gray-3); margin-bottom: 12px; }
+  .coach-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+  .stars { color: var(--amber); font-size: 13px; letter-spacing: 1px; }
+  .rating-num { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .rating-count { font-size: 12px; color: var(--gray-3); }
+  .coach-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 50px; background: rgba(26,122,110,0.1); color: var(--teal); border: 0.5px solid rgba(26,122,110,0.2); }
+  .coach-book-btn { width: 100%; font-family: var(--font); font-size: 14px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 12px; border-radius: var(--radius-sm); transition: var(--transition); letter-spacing: 0.01em; }
+  .coach-book-btn:hover { background: var(--teal-mid); }
+
+  /* ── IA SECTION ── */
+  .ia-section { background: var(--dark); padding: 60px 24px; }
+  .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .ia-visual { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 32px; position: relative; overflow: hidden; }
+  .ia-visual::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(26,122,110,0.2), transparent 70%); pointer-events: none; }
+  .ia-dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .ia-dashboard-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .ia-badge-live { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--teal-light); background: rgba(26,122,110,0.15); border: 0.5px solid rgba(26,122,110,0.4); padding: 4px 10px; border-radius: 50px; }
+  .ia-badge-live span { width: 6px; height: 6px; background: var(--teal-light); border-radius: 50%; animation: pulse 2s infinite; }
+  .ia-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .ia-metric { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.06); border-radius: var(--radius-md); padding: 16px 12px; text-align: center; }
+  .ia-metric-val { font-size: 24px; font-weight: 700; color: var(--teal-light); letter-spacing: -0.03em; margin-bottom: 4px; }
+  .ia-metric-label { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ia-progress-bar { margin-bottom: 16px; }
+  .ia-progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .ia-progress-label { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .ia-progress-pct { font-size: 13px; font-weight: 600; color: var(--teal-light); }
+  .ia-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .ia-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal-light)); border-radius: 3px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0%; }
+  .ia-reco { display: flex; align-items: flex-start; gap: 12px; margin-top: 24px; background: rgba(26,122,110,0.08); border: 0.5px solid rgba(26,122,110,0.2); border-radius: var(--radius-md); padding: 16px; }
+  .ia-reco-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .ia-reco-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .ia-text .section-sub { margin-bottom: 32px; }
+  .ia-feature-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .ia-feature-item { display: flex; align-items: flex-start; gap: 14px; font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .ia-check { width: 22px; height: 22px; background: rgba(26,122,110,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 11px; color: var(--teal-light); }
+
+  /* ── BOUTIQUE ── */
+  .shop-section { background: var(--gray-1); padding: 60px 24px; color: var(--dark); }
+  .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+  .product-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); cursor: pointer; border: 0.5px solid var(--gray-2); }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  .product-img { height: 180px; position: relative; overflow: hidden; }
+  .product-img-1 { background: #D4F5EF; }
+  .product-img-2 { background: #EEF2FF; }
+  .product-img-3 { background: #FEF3E2; }
+  .product-img-4 { background: #F0FDF4; }
+  .product-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
+  .product-card:hover .product-photo { transform: scale(1.07); }
+  .product-ia-badge { position: absolute; bottom: 10px; right: 10px; background: var(--teal); color: var(--white); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 50px; letter-spacing: 0.04em; z-index: 2; }
+  .product-info { padding: 16px; }
+  .product-name { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .product-desc { font-size: 12px; color: var(--gray-3); margin-bottom: 12px; line-height: 1.4; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 16px; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
+  .product-add { font-family: var(--font); font-size: 12px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 7px 14px; border-radius: var(--radius-sm); transition: var(--transition); }
+  .product-add:hover { background: var(--teal-mid); }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--dark-2); padding: 110px 24px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .review-card { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 28px 26px; transition: var(--transition); cursor: default; }
+  .review-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(26,122,110,0.2); }
+  .review-stars { color: var(--amber); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  .review-text { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 22px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .avatar-teal { background: rgba(26,122,110,0.25); color: var(--teal-light); }
+  .avatar-blue { background: rgba(59,130,246,0.2); color: #93C5FD; }
+  .avatar-amber { background: rgba(245,166,35,0.2); color: #FCD34D; }
+  .review-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+  .review-role { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* ── CTA ── */
+  .cta-section { background: var(--dark); padding: 130px 24px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(26,122,110,0.18), transparent 70%); }
+  .cta-content { position: relative; z-index: 2; }
+  .cta-section .section-title { font-size: clamp(36px, 5vw, 64px); max-width: 700px; margin: 0 auto 20px; }
+  .cta-section .section-sub { margin: 0 auto 48px; font-size: 17px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .cta-note { font-size: 13px; color: rgba(255,255,255,0.3); letter-spacing: 0.01em; }
+  .cta-note span { color: rgba(255,255,255,0.5); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--dark-2); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 48px 24px 32px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .nav-logo { font-size: 22px; display: block; margin-bottom: 14px; text-decoration: none; color: var(--white); }
+  .footer-desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.65; max-width: 260px; }
+  .footer-col-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 14px; color: rgba(255,255,255,0.4); text-decoration: none; transition: var(--transition); }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom { border-top: 0.5px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .footer-copy a { color: var(--teal-light); text-decoration: none; }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: var(--transition); }
+  .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(26,122,110,0.95); backdrop-filter: blur(20px); color: var(--white); padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 500; z-index: 1000; opacity: 0; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); pointer-events: none; white-space: nowrap; border: 0.5px solid rgba(255,255,255,0.15); }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── MODAL ── */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(10px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: var(--transition); }
+  .modal-overlay.show { opacity: 1; pointer-events: all; }
+  .modal { background: var(--dark-2); border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 40px; max-width: 480px; width: 100%; transform: scale(0.95) translateY(20px); transition: var(--transition); }
+  .modal-overlay.show .modal { transform: scale(1) translateY(0); }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .modal-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .modal-close { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border: none; border-radius: 50%; color: var(--white); cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+  .modal-close:hover { background: rgba(255,255,255,0.15); }
+  .modal-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .form-group input, .form-group select { width: 100%; font-family: var(--font); font-size: 15px; color: var(--white); background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12); border-radius: var(--radius-md); padding: 13px 16px; outline: none; transition: var(--transition); }
+  .form-group input:focus, .form-group select:focus { border-color: var(--teal); background: rgba(26,122,110,0.08); }
+  .form-group select option { background: var(--dark-2); }
+  .modal-submit { font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 14px; border-radius: var(--radius-md); transition: var(--transition); margin-top: 8px; letter-spacing: 0.01em; }
+  .modal-submit:hover { background: var(--teal-light); transform: translateY(-1px); }
+  /* Badge "7 jours gratuits" dans la modale inscription */
+  .modal-header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .modal-free-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(26,122,110,0.12); border: 0.5px solid rgba(34,196,174,0.3); color: var(--teal-light); font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 50px; letter-spacing: 0.04em; white-space: nowrap; }
+  /* Séparateur OAuth */
+  .modal-divider { display: flex; align-items: center; gap: 12px; margin: 4px 0; }
+  .modal-divider::before, .modal-divider::after { content: ''; flex: 1; height: 0.5px; background: rgba(255,255,255,0.1); }
+  .modal-divider span { font-size: 12px; color: rgba(255,255,255,0.28); }
+  /* Boutons OAuth */
+  .oauth-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .oauth-btn { font-family: var(--font); font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.1); cursor: pointer; padding: 11px 14px; border-radius: var(--radius-md); transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+  .oauth-btn:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+  /* Note RGPD micro dans inscription */
+  .modal-rgpd-note { font-size: 11px; color: rgba(255,255,255,0.22); text-align: center; line-height: 1.55; }
+  .modal-rgpd-badge { display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(26,122,110,0.08); border: 0.5px solid rgba(34,196,174,0.15); color: rgba(34,196,174,0.65); font-size: 10px; font-weight: 600; padding: 6px 12px; border-radius: 50px; letter-spacing: 0.04em; margin-top: -4px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── BREAKPOINT 1024px ── */
+  @media (max-width: 1024px) {
+    .shop-grid { grid-template-columns: repeat(2, 1fr); }
+    .ia-grid { grid-template-columns: 1fr; }
+    .ia-text { order: -1; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── BREAKPOINT 768px — menu hamburger ── */
+  @media (max-width: 768px) {
+    /* Nav links cachés par défaut, visibles quand .open */
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(10,15,14,0.97);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+      padding: 12px 0 20px;
+      list-style: none;
+      z-index: 99;
+    }
+    .nav-links.open {
+      display: flex;
+    }
+    .nav-links li {
+      width: 100%;
+    }
+    .nav-links a {
+      display: block;
+      padding: 14px clamp(20px, 4vw, 48px);
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 0.5px solid rgba(255,255,255,0.05);
+    }
+    .nav-links a:hover {
+      color: var(--teal-light);
+      background: rgba(26,122,110,0.08);
+    }
+    .nav-cta .btn-ghost { display: none; }
+    .hamburger { display: flex; }
+
+    /* Grilles */
+    .how-grid { grid-template-columns: 1fr; }
+    .coaches-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .shop-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Stats */
+    .stat-num { font-size: 32px; }
+    .coaches-header { flex-direction: column; align-items: flex-start; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  /* ── BREAKPOINT 480px ── */
+  @media (max-width: 480px) {
+    .shop-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr; }
+    .stats-inner::before, .stats-inner::after { display: none; }
+  }
+
+  /* ══════════════════════════════════════
+     SÉCURITÉ SÉCURITÉ & RGPD — styles ajoutés RGPD · styles ajoutés
+     ══════════════════════════════════════ */
+
+  .rgpd-section { background: var(--dark-3); padding: 110px 24px; }
+  .security-intro { max-width: 640px; margin-bottom: 64px; }
+  .security-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+  .security-card { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg); padding: 28px 24px; transition: var(--transition); position: relative; overflow: hidden; cursor: default; }
+  .security-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--teal-mid), var(--teal-light)); opacity: 0; transition: var(--transition); }
+  .security-card:hover { border-color: rgba(26,122,110,0.3); background: rgba(26,122,110,0.06); transform: translateY(-3px); }
+  .security-card:hover::before { opacity: 1; }
+  .security-card-icon { width: 48px; height: 48px; background: rgba(26,122,110,0.12); border: 0.5px solid rgba(26,122,110,0.25); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+  .security-card-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; letter-spacing: -0.02em; }
+  .security-card-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; }
+  .security-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(26,122,110,0.12); border: 0.5px solid rgba(34,196,174,0.25); color: var(--teal-light); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 50px; margin-top: 12px; letter-spacing: 0.04em; }
+
+  /* Bloc droits RGPD */
+  .rgpd-rights-block { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.07); border-radius: var(--radius-xl); padding: 40px; margin-top: 16px; }
+  .rgpd-rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .rgpd-rights-title { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; color: var(--white); }
+  .rgpd-rights-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .rgpd-right-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+  .rgpd-right-icon { width: 24px; height: 24px; background: rgba(26,122,110,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; color: var(--teal-light); margin-top: 1px; }
+  .rgpd-dpo { background: rgba(26,122,110,0.08); border: 0.5px solid rgba(26,122,110,0.2); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: flex-start; gap: 14px; }
+  .rgpd-dpo-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .rgpd-dpo-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .rgpd-dpo-text strong { color: var(--white); font-weight: 600; }
+  .rgpd-dpo-text a { color: var(--teal-light); text-decoration: none; transition: var(--transition); }
+  .rgpd-dpo-text a:hover { color: var(--white); }
+  .rgpd-hosting { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.07); border-radius: var(--radius-md); }
+  .rgpd-hosting-flag { font-size: 24px; flex-shrink: 0; }
+  .rgpd-hosting-text { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .rgpd-hosting-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+  /* ── BANDEAU COOKIES ── */
+  .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 500; background: rgba(17,24,22,0.98); backdrop-filter: saturate(180%) blur(24px); -webkit-backdrop-filter: saturate(180%) blur(24px); border-top: 0.5px solid rgba(255,255,255,0.1); padding: 24px clamp(16px, 4vw, 48px); transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+  .cookie-banner.show { transform: translateY(0); }
+  .cookie-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+  .cookie-text { flex: 1; min-width: 260px; }
+  .cookie-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em; }
+  .cookie-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 14px; }
+  .cookie-prefs { display: flex; flex-direction: column; gap: 8px; }
+  .cookie-pref { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 10px 14px; gap: 12px; }
+  .cookie-pref-info { flex: 1; }
+  .cookie-pref-label { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 500; }
+  .cookie-pref-desc { font-size: 11px; color: rgba(255,255,255,0.32); margin-top: 2px; }
+  .cookie-toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+  .cookie-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+  .cookie-toggle-track { position: absolute; inset: 0; background: rgba(255,255,255,0.12); border-radius: 11px; cursor: pointer; transition: background 0.3s; }
+  .cookie-toggle input:checked + .cookie-toggle-track { background: var(--teal); }
+  .cookie-toggle-track::after { content: ''; position: absolute; left: 3px; top: 3px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.3s; }
+  .cookie-toggle input:checked + .cookie-toggle-track::after { transform: translateX(18px); }
+  .cookie-toggle input:disabled + .cookie-toggle-track { opacity: 0.65; cursor: not-allowed; }
+  .cookie-actions { display: flex; flex-direction: column; gap: 10px; justify-content: flex-start; flex-shrink: 0; min-width: 190px; padding-top: 4px; }
+  .cookie-accept-all { font-family: var(--font); font-size: 14px; font-weight: 600; color: var(--white); background: var(--teal); border: none; cursor: pointer; padding: 12px 20px; border-radius: 50px; transition: var(--transition); white-space: nowrap; }
+  .cookie-accept-all:hover { background: var(--teal-light); transform: translateY(-1px); }
+  .cookie-save { font-family: var(--font); font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.12); cursor: pointer; padding: 11px 20px; border-radius: 50px; transition: var(--transition); white-space: nowrap; text-align: center; }
+  .cookie-save:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+  .cookie-reject { font-family: var(--font); font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.3); background: none; border: none; cursor: pointer; text-align: center; transition: var(--transition); padding: 4px; }
+  .cookie-reject:hover { color: rgba(255,255,255,0.6); text-decoration: underline; }
+
+  @media (max-width: 1024px) { .security-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
+    .security-grid { grid-template-columns: 1fr; }
+    .rgpd-rights-grid { grid-template-columns: 1fr; }
+    .rgpd-rights-block { padding: 24px; }
+    .cookie-inner { flex-direction: column; gap: 20px; }
+    .cookie-actions { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════
+     BANDEAU CONSENTEMENT COOKIES · RGPD
+     ══════════════════════════════════════ -->
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Gestion des cookies" aria-modal="true">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <div class="cookie-title">🍪 Gestion des cookies &amp; vie privée</div>
+      <div class="cookie-desc">Fit&amp;Zen utilise des cookies pour assurer le fonctionnement de la plateforme et améliorer votre expérience. Conformément au RGPD (Règlement UE 2016/679), <strong style="color:rgba(255,255,255,0.75)"></strong> votre consentement est toujours libre, éclairé et explicite.</div>
+      <div class="cookie-prefs">
+        <div class="cookie-pref">
+          <div class="cookie-pref-info">
+            <div class="cookie-pref-label"> Cookies strictement nécessaires</div>
+            <div class="cookie-pref-desc">Authentification, sécurité de session, fonctionnement de la plateforme. Toujours actifs.</div>
+          </div>
+          <label class="cookie-toggle" aria-label="Cookies nécessaires, toujours actifs">
+            <input type="checkbox" checked disabled>
+            <span class="cookie-toggle-track"></span>
+          </label>
+        </div>
+        <div class="cookie-pref">
+          <div class="cookie-pref-info">
+            <div class="cookie-pref-label"> Cookies analytiques Mixpanel</div>
+            <div class="cookie-pref-desc">Analyse d'audience anonymisée pour améliorer la plateforme. Données non revendues.</div>
+          </div>
+          <label class="cookie-toggle" aria-label="Accepter les cookies analytiques Mixpanel">
+            <input type="checkbox" id="cookie-analytics">
+            <span class="cookie-toggle-track"></span>
+          </label>
+        </div>
+        <div class="cookie-pref">
+          <div class="cookie-pref-info">
+            <div class="cookie-pref-label"> Cookies marketing</div>
+            <div class="cookie-pref-desc"> Personnalisation des publicités et suivi des conversions partenaires.</div>
+          </div>
+          <label class="cookie-toggle" aria-label="Accepter les cookies marketing">
+            <input type="checkbox" id="cookie-marketing">
+            <span class="cookie-toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-accept-all" onclick="acceptAllCookies()">Tout accepter</button>
+      <button class="cookie-save" onclick="savePreferences()">Enregistrer mes choix</button>
+      <button class="cookie-reject" onclick="rejectAllCookies()">Refuser tout</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL CONNEXION ── -->
+<div class="modal-overlay" id="modal-login">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Connexion à votre profil</div>
+      <button class="modal-close" onclick="closeLoginModal()" aria-label="Fermer">×</button>
+    </div>
+    <div class="modal-form">
+      <div style="text-align:center; margin-bottom:4px;">
+        <div style="width:52px;height:52px;background:rgba(26,122,110,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;">🔐</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">Bon retour sur Fit&amp;Zen.<br>Votre espace personnel vous attend.</p>
+      </div>
+      <div class="form-group">
+        <label>ADRESSE EMAIL</label>
+        <input type="email" placeholder="lea@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label>MOT DE PASSE</label>
+        <input type="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div style="text-align:right;margin-top:-8px;">
+        <a href="#" style="font-size:12px;color:var(--teal-light);text-decoration:none;opacity:0.8;" onclick="showToast('Réinitialisation disponible très bientôt !'); return false;">Mot de passe oublié ?</a>
+      </div>
+      <button class="modal-submit" onclick="handleLogin()">Se connecter</button>
+      <div class="modal-divider"><span>ou continuer avec</span></div>
+      <div class="oauth-row">
+        <button class="oauth-btn" onclick="showToast('Connexion Google bientôt disponible !'); return false;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google
+        </button>
+        <button class="oauth-btn" onclick="showToast('Connexion Apple bientôt disponible !'); return false;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Apple
+        </button>
+      </div>
+      <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.35);margin-top:4px;">Pas encore membre ? <a href="#" style="color:var(--teal-light);text-decoration:none;" onclick="closeLoginModal(); openModal(); return false;">Créer un compte →</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header-row">
+      <div class="modal-title">Créer mon compte</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="modal-free-badge">✓ 7 jours gratuits</span>
+        <button class="modal-close" onclick="closeModal()" aria-label="Fermer">×</button>
+      </div>
+    </div>
+    <div class="modal-form">
+      <p style="font-size:13px;color:rgba(255,255,255,0.42);line-height:1.6;margin-top:-8px;margin-bottom:4px;">Rejoignez plus de 1 600 membres actifs. Votre premier programme IA sera prêt en 2 minutes.</p>
+      <div class="form-group">
+        <label>PRÉNOM &amp; NOM</label>
+        <input type="text" placeholder="Léa Aubry" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>EMAIL</label>
+        <input type="email" placeholder="lea@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label>MON OBJECTIF</label>
+        <select>
+          <option>Perte de poids</option>
+          <option>Prise de muscle</option>
+          <option>Bien-être et relaxation</option>
+          <option>Amélioration des performances</option>
+          <option>Flexibilité et mobilité</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>MON NIVEAU</label>
+        <select>
+          <option>Débutant</option>
+          <option>Intermédiaire</option>
+          <option>Avancé</option>
+        </select>
+      </div>
+      <button class="modal-submit" onclick="handleSignup()">Démarrer mes 7 jours gratuits</button>
+      <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.35);margin-top:0;">Déjà membre ? <a href="#" style="color:var(--teal-light);text-decoration:none;" onclick="closeModal(); openLoginModal(); return false;">Se connecter →</a></p>
+      <p class="modal-rgpd-note">En créant un compte, vous acceptez nos CGU et notre Politique de confidentialité.</p>
+      <div class="modal-rgpd-badge">🔒 Données protégées · RGPD UE 2016/679</div>
+    </div>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Fit<span>&</span>Zen</a>
+  <ul class="nav-links">
+    <li><a href="#coaches">Coachs</a></li>
+    <li><a href="#programme">Programme IA</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#avis">Avis</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#" class="btn-ghost" onclick="openLoginModal(); return false;">Se connecter</a>
+    <a href="#" class="btn-primary" onclick="openModal(); return false;">Commencer</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Plateforme Sport & Bien-être v1.0
+    </div>
+    <h1>
+      Ton coach,<br>
+      tes <span class="accent">séances</span><br>
+      et tes produits.
+    </h1>
+    <p class="hero-sub">
+      Une plateforme unifiée pour réserver avec un coach certifié,
+      suivre ton programme IA et commander tes compléments en quelques secondes.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-hero-primary" onclick="openModal(); return false;">
+        Réserver une séance
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#coaches" class="btn-hero-secondary">
+        Découvrir les coachs
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-inner reveal">
+    <div class="stat-item">
+      <div class="stat-num">160+</div>
+      <div class="stat-label">Coachs certifiés disponibles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.8/5</div>
+      <div class="stat-label">Score de satisfaction moyen</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 600</div>
+      <div class="stat-label">Membres actifs sur la plateforme</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Fonctionnement</div>
+      <h2 class="section-title">Simple. Rapide. Efficace.</h2>
+      <p class="section-sub">3 étapes pour commencer ton parcours Fit&Zen, sans friction.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal reveal-delay-1">
+        <div class="how-num">01</div>
+        <div class="how-icon">⚡</div>
+        <div class="how-title">Crée ton profil en 2 min</div>
+        <div class="how-desc">Renseigne tes objectifs, ton niveau et tes disciplines. L'IA Fit&Zen génère instantanément ton programme personnalisé.</div>
+      </div>
+      <div class="how-card reveal reveal-delay-2">
+        <div class="how-num">02</div>
+        <div class="how-icon">👤</div>
+        <div class="how-title">Choisis ton coach certifié</div>
+        <div class="how-desc">Filtre par discipline, disponibilité et localisation. Réserve en 1 clic avec paiement Apple Pay ou Google Pay.</div>
+      </div>
+      <div class="how-card reveal reveal-delay-3">
+        <div class="how-num">03</div>
+        <div class="how-icon">📈</div>
+        <div class="how-title">Progresse & commande</div>
+        <div class="how-desc">Suis tes performances en temps réel. L'IA te recommande les produits adaptés à ton programme en cours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     COACHES · photos réelles Unsplash
+     ═══════════════════════════════════════ -->
+<section class="section section-darker" id="coaches">
+  <div class="container">
+    <div class="coaches-header reveal">
+      <div class="coaches-header-text">
+        <div class="section-label">Nos coachs</div>
+        <h2 class="section-title">Les meilleurs près de toi</h2>
+        <p class="section-sub" style="margin-bottom:0">Certifiés, évalués et sélectionnés par notre équipe.</p>
+      </div>
+      <a href="#" class="btn-hero-secondary" style="white-space:nowrap" onclick="showToast('Tous les coachs disponibles très bientôt !'); return false;">
+        Voir tous les coachs →
+      </a>
+    </div>
+    <div class="coaches-grid">
+
+      <!-- Coach 1 — Sophie Aubert · Yoga / Pilates -->
+      <div class="coach-card reveal reveal-delay-1">
+        <div class="coach-img coach-img-1">
+          <img
+            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=480&fit=crop&crop=top&auto=format&q=80"
+            alt="Sophie Aubert, coach yoga et pilates"
+            class="coach-photo"
+            loading="lazy"
+          >
+          <div class="coach-badge">Disponible aujourd'hui</div>
+        </div>
+        <div class="coach-info">
+          <div class="coach-name">Sophie Aubert</div>
+          <div class="coach-specialty">Yoga · Pilates · Méditation</div>
+          <div class="coach-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-num">4.9</span>
+            <span class="rating-count">(127 avis)</span>
+          </div>
+          <div class="coach-tags">
+            <span class="tag">Yoga</span>
+            <span class="tag">Pilates</span>
+            <span class="tag">Mindfulness</span>
+          </div>
+          <button class="coach-book-btn" onclick="openModal()">Réserver une séance</button>
+        </div>
+      </div>
+
+      <!-- Coach 2 — Thomas Martin · Running / Cardio -->
+      <div class="coach-card reveal reveal-delay-2">
+        <div class="coach-img coach-img-2">
+          <img
+            src="https://images.unsplash.com/photo-1554139844-af2fc8ad3a3a?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Thomas Martin, coach running et cardio"
+            class="coach-photo"
+            loading="lazy"
+          >
+          <div class="coach-badge">Disponible samedi</div>
+        </div>
+        <div class="coach-info">
+          <div class="coach-name">Thomas Martin</div>
+          <div class="coach-specialty">Running · Cardio · Triathlon</div>
+          <div class="coach-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-num">4.8</span>
+            <span class="rating-count">(94 avis)</span>
+          </div>
+          <div class="coach-tags">
+            <span class="tag">Running</span>
+            <span class="tag">Endurance</span>
+            <span class="tag">Garmin</span>
+          </div>
+          <button class="coach-book-btn" onclick="openModal()">Réserver une séance</button>
+        </div>
+      </div>
+
+      <!-- Coach 3 — Clara Leclerc · Musculation / CrossFit -->
+      <div class="coach-card reveal reveal-delay-3">
+        <div class="coach-img coach-img-3">
+          <img
+            src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=600&h=480&fit=crop&crop=top&auto=format&q=80"
+            alt="Clara Leclerc, coach musculation et crossfit"
+            class="coach-photo"
+            loading="lazy"
+          >
+          <div class="coach-badge">Disponible ce soir</div>
+        </div>
+        <div class="coach-info">
+          <div class="coach-name">Clara Leclerc</div>
+          <div class="coach-specialty">Musculation · CrossFit · Force</div>
+          <div class="coach-rating">
+            <div class="stars">★★★★★</div>
+            <span class="rating-num">4.7</span>
+            <span class="rating-count">(83 avis)</span>
+          </div>
+          <div class="coach-tags">
+            <span class="tag">Muscu</span>
+            <span class="tag">CrossFit</span>
+            <span class="tag">Force</span>
+          </div>
+          <button class="coach-book-btn" onclick="openModal()">Réserver une séance</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="ia-section" id="programme">
+  <div class="container">
+    <div class="ia-grid">
+      <div class="ia-visual reveal">
+        <div class="ia-dashboard-header">
+          <div class="ia-dashboard-title">Mon programme IA</div>
+          <div class="ia-badge-live"><span></span> Synchronisé</div>
+        </div>
+        <div class="ia-metrics">
+          <div class="ia-metric">
+            <div class="ia-metric-val">3</div>
+            <div class="ia-metric-label">Séances / sem</div>
+          </div>
+          <div class="ia-metric">
+            <div class="ia-metric-val">78%</div>
+            <div class="ia-metric-label">Objectif atteint</div>
+          </div>
+          <div class="ia-metric">
+            <div class="ia-metric-val">+14%</div>
+            <div class="ia-metric-label">Progression</div>
+          </div>
+        </div>
+        <div class="ia-progress-bar">
+          <div class="ia-progress-header">
+            <span class="ia-progress-label">Force · Semaine 6 sur 8</span>
+            <span class="ia-progress-pct">78%</span>
+          </div>
+          <div class="ia-bar-track">
+            <div class="ia-bar-fill" id="bar1" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="ia-progress-bar">
+          <div class="ia-progress-header">
+            <span class="ia-progress-label">Endurance cardio</span>
+            <span class="ia-progress-pct">55%</span>
+          </div>
+          <div class="ia-bar-track">
+            <div class="ia-bar-fill" id="bar2" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="ia-reco">
+          <div class="ia-reco-icon">💡</div>
+          <div class="ia-reco-text"><strong>Recommandation IA :</strong> Augmente ta charge de 5% cette semaine, tes données Garmin montrent une récupération optimale.</div>
+        </div>
+      </div>
+      <div class="ia-text reveal reveal-delay-2">
+        <div class="section-label">Intelligence artificielle</div>
+        <h2 class="section-title">Un programme qui<br>te comprend vraiment.</h2>
+        <p class="section-sub">L'IA Fit&Zen analyse tes données Garmin, Apple Watch et Strava pour adapter ton programme en temps réel selon ta progression et ta récupération.</p>
+        <ul class="ia-feature-list">
+          <li class="ia-feature-item"><div class="ia-check">✓</div>Synchronisation automatique Garmin, Apple Watch & Strava</li>
+          <li class="ia-feature-item"><div class="ia-check">✓</div>Ajustement intelligent du programme selon ta récupération (HRV, sommeil)</li>
+          <li class="ia-feature-item"><div class="ia-check">✓</div>Recommandations produits contextualisées au programme en cours</li>
+          <li class="ia-feature-item"><div class="ia-check">✓</div>Tableau de bord analytique avancé (VO2 max, zones cardio, charge)</li>
+          <li class="ia-feature-item"><div class="ia-check">✓</div>Alertes personnalisées si stagnation détectée & ajustement automatique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     BOUTIQUE · photos réelles Unsplash
+     ═══════════════════════════════════════ -->
+<section class="shop-section" id="boutique">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+      <div>
+        <div class="section-label" style="color:var(--teal)">Boutique</div>
+        <h2 class="section-title" style="color:var(--dark)">Recommandés pour toi.</h2>
+        <p class="section-sub" style="color:rgba(10,15,14,0.5)">Sélection IA basée sur ton programme en cours.</p>
+      </div>
+      <a href="#" class="btn-primary" style="margin-bottom:56px" onclick="showToast('La boutique complète arrive très bientôt !'); return false;">
+        Voir toute la boutique →
+      </a>
+    </div>
+    <div class="shop-grid">
+
+      <!-- Produit 1 — Protéines Bio Vanille -->
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-img product-img-1">
+          <img
+            src="https://images.unsplash.com/photo-1693996045404-d7cc056250e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Protéines Bio Vanille"
+            class="product-photo"
+            loading="lazy"
+          >
+          <div class="product-ia-badge">Reco IA</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Protéines Bio Vanille</div>
+          <div class="product-desc">Whey native bio, 25g de protéines par dose. Sans additifs.</div>
+          <div class="product-footer">
+            <span class="product-price">34,90 €</span>
+            <button class="product-add" onclick="showToast('Protéines Bio ajoutées au panier ✓')">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit 2 — Tapis Yoga Premium -->
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-img product-img-2">
+          <img
+            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&h=360&fit=crop&auto=format&q=80"
+            alt="Tapis Yoga Premium"
+            class="product-photo"
+            loading="lazy"
+          >
+          <div class="product-ia-badge">Reco IA</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Tapis Yoga Premium</div>
+          <div class="product-desc">Antidérapant, 6mm, matière naturelle recyclée.</div>
+          <div class="product-footer">
+            <span class="product-price">49,00 €</span>
+            <button class="product-add" onclick="showToast('Tapis Yoga ajouté au panier ✓')">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit 3 — Complexe Récupération -->
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-img product-img-3">
+          <img
+            src="https://images.unsplash.com/photo-1544829894-eb023ba95a38?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Complexe Récupération avec Magnésium, BCAA et Vitamine D3"
+            class="product-photo"
+            loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=360&fit=crop&auto=format&q=80'; this.onerror=null;"
+          >
+          <div class="product-ia-badge">Reco IA</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Complexe Récupération</div>
+          <div class="product-desc">Magnésium, BCAA, Vitamine D3. Formule récupération musculaire.</div>
+          <div class="product-footer">
+            <span class="product-price">28,50 €</span>
+            <button class="product-add" onclick="showToast('Complexe Récupération ajouté ✓')">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit 4 — Bandes de Résistance -->
+      <div class="product-card reveal reveal-delay-4">
+        <div class="product-img product-img-4">
+          <img
+            src="https://i.pinimg.com/webp/736x/b2/cc/c1/b2ccc1fbec8416b3cfa46c21cd5c5aff.webp"
+            alt="Bandes de Résistance"
+            class="product-photo"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          >
+          <div class="product-ia-badge">Reco IA</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Bandes de Résistance</div>
+          <div class="product-desc">Set de 5 bandes, niveaux progressifs. Idéal mobilité.</div>
+          <div class="product-footer">
+            <span class="product-price">19,90 €</span>
+            <button class="product-add" onclick="showToast('Bandes de Résistance ajoutées ✓')">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="reviews-section" id="avis">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="text-align:center">Témoignages</div>
+      <h2 class="section-title" style="text-align:center">Ce que disent nos membres.</h2>
+      <p class="section-sub" style="margin:0 auto 0;text-align:center">+2 500 avis vérifiés • Note moyenne 4.8/5</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Enfin une app qui réunit tout ! Mon coach yoga, mes programmes et mes achats bio en un seul endroit. Fini les 5 apps différentes."</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-teal">LA</div>
+          <div>
+            <div class="review-name">Léa Aubry</div>
+            <div class="review-role">Chargée de communication, Paris</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"La synchro Garmin est parfaite. Mon programme IA est vraiment adapté à mon niveau avancé, pas comme les apps basiques que j'utilisais avant."</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-blue">MD</div>
+          <div>
+            <div class="review-name">Marc Dupont</div>
+            <div class="review-role">Cadre commercial, Lyon</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"La réservation en 2 clics, le paiement Apple Pay, la confirmation push instantanée... exactement ce dont j'avais besoin. Bravo à l'équipe Fit&Zen."</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-amber">SR</div>
+          <div>
+            <div class="review-name">Sophie Renard</div>
+            <div class="review-role">Professeure, Bordeaux</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SÉCURITÉ & RGPD
+     ═══════════════════════════════════════ -->
+<section class="rgpd-section" id="rgpd">
+  <div class="container">
+
+    <!-- Intro -->
+    <div class="reveal security-intro">
+      <div class="section-label">Sécurité &amp; RGPD</div>
+      <h2 class="section-title">Vos données,<br>notre priorité.</h2>
+      <p class="section-sub">La sécurité des données est au cœur de la stratégie Fit&amp;Zen. La plateforme collecte des informations personnelles sensibles profil santé, données sportives, coordonnées bancaires et s'engage à les protéger avec les standards les plus élevés du secteur.</p>
+    </div>
+
+    <!-- 6 cartes sécurité -->
+    <div class="security-grid">
+
+      <div class="security-card reveal reveal-delay-1">
+        <div class="security-card-icon">🔐</div>
+        <div class="security-card-title">Chiffrement TLS 1.3 &amp; bcrypt</div>
+        <div class="security-card-desc">Tous les échanges entre l'utilisateur et les serveurs sont chiffrés via le protocole <strong style="color:rgba(255,255,255,0.8)">TLS 1.3</strong>.<strong style="color:rgba(255,255,255,0.8)">bcrypt avec salage</strong>, illisibles même en cas d'accès non autorisé à la base de données.</div>
+        <span class="security-badge">✓ Chiffrement de bout en bout</span>
+      </div>
+
+      <div class="security-card reveal reveal-delay-2">
+        <div class="security-card-icon">💳</div>
+        <div class="security-card-title">Paiements Stripe PCI-DSS niv. 1</div>
+        <div class="security-card-desc">Les données bancaires ne transitent jamais par les serveurs Fit&amp;Zen. Elles sont traitées exclusivement par <strong style="color:rgba(255,255,255,0.8)">Stripe</strong>, certifié <strong style="color:rgba(255,255,255,0.8)">PCI-DSS niveau 1</strong>, le standard de référence sécurisés.</div>
+        <span class="security-badge">✓ Zéro donnée bancaire stockée</span>
+      </div>
+
+      <div class="security-card reveal reveal-delay-3">
+        <div class="security-card-icon">🛡️</div>
+        <div class="security-card-title">OAuth 2.0 &amp; Authentification 2FA</div>
+        <div class="security-card-desc">Connexion sécurisée via <strong style="color:rgba(255,255,255,0.8)">OAuth 2.0</strong> (Google ou Apple), couplée à une <strong style="color:rgba(255,255,255,0.8)">authentification à deux facteurs (2FA)</strong> obligatoire pour les comptes coachs et administrateurs.</div>
+        <span class="security-badge">✓ Authentification renforcée</span>
+      </div>
+
+      <div class="security-card reveal reveal-delay-1">
+        <div class="security-card-icon">🍪</div>
+        <div class="security-card-title">Consentement granulaire &amp; transparent</div>
+        <div class="security-card-desc">Dès la première visite, un bandeau de consentement clair est affiché. L'utilisateur choisit précisément quels cookies il accepte nécessaires, analytiques (Mixpanel) ou marketing. <strong style="color:rgba(255,255,255,0.8)"></strong></div>
+        <span class="security-badge">✓ RGPD UE 2016/679</span>
+      </div>
+
+      <div class="security-card reveal reveal-delay-2">
+        <div class="security-card-icon">☁️</div>
+        <div class="security-card-title">Hébergement AWS France</div>
+        <div class="security-card-desc">L'ensemble des données est hébergé sur des serveurs <strong style="color:rgba(255,255,255,0.8)">AWS situés en France</strong>, dans la région <strong style="color:rgba(255,255,255,0.8)">eu-west-3 Paris</strong>, conformément aux exigences du RGPD européen et au principe de souveraineté des données.</div>
+        <span class="security-badge">✓ Données souveraines en Europe</span>
+      </div>
+
+      <div class="security-card reveal reveal-delay-3">
+        <div class="security-card-icon">📋</div>
+        <div class="security-card-title">Politique de confidentialité lisible</div>
+        <div class="security-card-desc">Une page dédiée accessible depuis le footer détaille données collectées, durées de conservation, tiers destinataires et droits utilisateur. Formulaire intégré dans l'espace profil traitement garanti en <strong style="color:rgba(255,255,255,0.8)">72 heures</strong>.</div>
+        <span class="security-badge">✓ Transparence totale</span>
+      </div>
+
+    </div>
+
+    <!-- Bloc droits RGPD + DPO -->
+    <div class="rgpd-rights-block reveal">
+      <div class="rgpd-rights-grid">
+
+        <div>
+          <div class="rgpd-rights-title">Vos droits RGPD garantis</div>
+          <div class="rgpd-rights-list">
+            <div class="rgpd-right-item">
+              <div class="rgpd-right-icon">👁</div>
+              <div><strong style="color:var(--white)">Droit d'accès</strong> : Consultez toutes les données personnelles que nous détenons sur vous, à tout moment.</div>
+            </div>
+            <div class="rgpd-right-item">
+              <div class="rgpd-right-icon">✏️</div>
+              <div><strong style="color:var(--white)">Droit de rectification</strong> : Corrigez ou mettez à jour vos informations personnelles directement depuis votre profil.</div>
+            </div>
+            <div class="rgpd-right-item">
+              <div class="rgpd-right-icon">🗑️</div>
+              <div><strong style="color:var(--white)">Droit à l'effacement</strong> : Demandez la suppression complète de vos données (droit à l'oubli), sans justification requise.</div>
+            </div>
+            <div class="rgpd-right-item">
+              <div class="rgpd-right-icon">📦</div>
+              <div><strong style="color:var(--white)">Droit à la portabilité</strong> : Exportez l'ensemble de vos données dans un format structuré, lisible et réutilisable.</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.38);font-style:italic;line-height:1.6;">Ces droits s'exercent directement depuis votre espace profil via un formulaire intégré délai de traitement garanti de 72 heures maximum.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="rgpd-dpo">
+            <div class="rgpd-dpo-icon">🧑‍⚖️</div>
+            <div class="rgpd-dpo-text">
+              <strong>Délégué à la Protection des Données (DPO)</strong><br>
+              Un DPO est désigné et joignable pour toute question relative à vos données personnelles ou à l'exercice de vos droits.<br>
+              <a href="/cdn-cgi/l/email-protection#d5a5a7bca3b4b6ac95b3bca1b4bbb1afb0bbfbb3a7" style="margin-top:8px;display:inline-block;font-weight:600;"><span class="__cf_email__" data-cfemail="99e9ebf0eff8fae0d9fff0edf8f7fde3fcf7b7ffeb">[email&#160;protected]</span> →</a>
+            </div>
+          </div>
+          <div class="rgpd-hosting">
+            <div class="rgpd-hosting-flag">🇫🇷</div>
+            <div class="rgpd-hosting-text">
+              <strong>Données hébergées en France</strong><br>
+              AWS eu-west-3 (Paris) · Mixpanel Analytics · Stripe PCI-DSS niveau 1<br>
+              Conforme au Règlement Général sur la Protection des Données UE 2016/679
+            </div>
+          </div>
+          <a href="#" class="btn-hero-secondary" style="text-align:center;justify-content:center;font-size:14px;" onclick="showToast('La politique de confidentialité arrive très bientôt !'); return false;">
+            Lire la politique de confidentialité →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content container-narrow">
+    <div class="reveal">
+      <div class="section-label" style="text-align:center">Rejoins Fit&Zen</div>
+      <h2 class="section-title">Commence ton parcours<br><span style="color:var(--teal-light)">aujourd'hui.</span></h2>
+      <p class="section-sub" style="margin:0 auto 48px">7 jours d'essai gratuit. Sans engagement. Annulation en 1 clic.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn-hero-primary" onclick="openModal(); return false;">
+          Créer mon compte gratuitement
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#coaches" class="btn-hero-secondary">Découvrir les coachs</a>
+      </div>
+      <div class="cta-note">
+        Déjà membre ? <span><a href="#" style="color:var(--teal-light);text-decoration:none" onclick="showToast('La connexion sera bientôt disponible !'); return false;">Se connecter →</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="nav-logo">Fit<span style="color:var(--teal-light)">&</span>Zen</span>
+        <div class="footer-desc">La plateforme sport & bien-être qui réunit coaching personnalisé, programme IA et boutique en une seule expérience fluide.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Plateforme</div>
+        <ul class="footer-links">
+          <li><a href="#coaches">Nos coachs</a></li>
+          <li><a href="#programme">Programme IA</a></li>
+          <li><a href="#boutique">Boutique</a></li>
+          <li><a href="#avis">Témoignages</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">À propos</div>
+        <ul class="footer-links">
+          <li><a href="#">Notre mission</a></li>
+          <li><a href="#">L'équipe</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Presse</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Légal</div>
+        <ul class="footer-links">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">CGU</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">RGPD</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <a href="#">Fit&Zen SAS</a> • Sport & Bien-être Digital. Tous droits réservés.</div>
+      <div class="footer-legal">
+        <a href="#">Cookies</a>
+        <a href="#">Accessibilité</a>
+        <a href="#">Plan du site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        if (e.target.querySelector('#bar1')) {
+          setTimeout(() => { document.getElementById('bar1').style.width = '78%'; }, 200);
+          setTimeout(() => { document.getElementById('bar2').style.width = '55%'; }, 400);
+        }
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.background = window.scrollY > 40
+      ? 'rgba(10,15,14,0.95)'
+      : 'rgba(10,15,14,0.82)';
+  });
+
+  function openLoginModal() {
+    document.getElementById('modal-login').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLoginModal() {
+    document.getElementById('modal-login').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal-login').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeLoginModal();
+  });
+  function handleLogin() {
+    closeLoginModal();
+    showToast('Connexion réussie ! Bienvenue sur Fit&Zen ✓');
+  }
+
+  function openModal() {
+    document.getElementById('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  function handleSignup() {
+    closeModal();
+    showToast('Bienvenue dans Fit&Zen ! Votre programme IA est déjà en cours de génération ✓');
+  }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  /* ── Menu hamburger ── */
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('active');
+  }
+
+  /* Fermer le menu au clic sur un lien */
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const burger = document.getElementById('hamburger');
+      menu.classList.remove('open');
+      burger.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeModal(); closeLoginModal(); }
+  });
+
+  /* ══════════════════════════════════════
+     BANDEAU COOKIES RGPD · logique JS
+     ══════════════════════════════════════ */
+  (function() {
+    try {
+      const stored = localStorage.getItem('fz_cookie_consent');
+      if (!stored) {
+        setTimeout(function() {
+          var banner = document.getElementById('cookie-banner');
+          if (banner) banner.classList.add('show');
+        }, 1400);
+      }
+    } catch(e) {}
+  })();
+
+  function acceptAllCookies() {
+    try {
+      document.getElementById('cookie-analytics').checked = true;
+      document.getElementById('cookie-marketing').checked = true;
+      localStorage.setItem('fz_cookie_consent', JSON.stringify({ necessary: true, analytics: true, marketing: true, date: new Date().toISOString() }));
+    } catch(e) {}
+    hideCookieBanner();
+    showToast('Préférences cookies enregistrées. Merci !✓');
+  }
+
+  function savePreferences() {
+    try {
+      var analytics = document.getElementById('cookie-analytics').checked;
+      var marketing = document.getElementById('cookie-marketing').checked;
+      localStorage.setItem('fz_cookie_consent', JSON.stringify({ necessary: true, analytics: analytics, marketing: marketing, date: new Date().toISOString() }));
+    } catch(e) {}
+    hideCookieBanner();
+    showToast('Préférences enregistrées ✓');
+  }
+
+  function rejectAllCookies() {
+    try {
+      localStorage.setItem('fz_cookie_consent', JSON.stringify({ necessary: true, analytics: false, marketing: false, date: new Date().toISOString() }));
+    } catch(e) {}
+    hideCookieBanner();
+    showToast('Cookies optionnels refusés. Seuls les cookies nécessaires restent actifs.');
+  }
+
+  function hideCookieBanner() {
+    var banner = document.getElementById('cookie-banner');
+    if (banner) banner.classList.remove('show');
+  }
+</script>
+</body>
+</html>
