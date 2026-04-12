@@ -146,22 +146,22 @@ cd fitzen-landing-page-prototype
 
 Le projet s'appuie sur une recherche utilisateur approfondie avec **2 personas principales** :
 
-### 👤 Léa Aubry
+### Léa Aubry
 **Profil** : 28 ans, professionnelle urbaine stressée  
 **Objectif** : Retrouver équilibre et bien-être malgré un agenda chargé  
 **Pain points** : Manque de temps, difficulté à maintenir une routine
 
-### 👤 Marc Dupont
+### Marc Dupont
 **Profil** : 35 ans, amateur de fitness cherchant à progresser  
 **Objectif** : Suivre ses performances et rester motivé  
 **Pain points** : Besoin d'accompagnement personnalisé, plateau de progression
 
 ---
 
-## 📫 Contact
+## Contact
 
 **Ynes** Chef de Projet Digital (UX/UI Designer)  
-🎓 Bachelor UX/UI — Digital Campus Paris  
+🎓 Bachelor UX/UI - Digital Campus Paris  
 💼 En recherche d'alternance Master (Big Data & IA / UX/UI Product Design)  
 📍 Région parisienne
 
