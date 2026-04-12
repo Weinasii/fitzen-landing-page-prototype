@@ -161,12 +161,12 @@ Le projet s'appuie sur une recherche utilisateur approfondie avec **2 personas p
 ## Contact
 
 **Ynes** Chef de Projet Digital (UX/UI Designer)  
-🎓 Bachelor UX/UI — Digital Campus Paris  
-💼 En recherche d'alternance Master (Big Data & IA / UX/UI Product Design)  
-📍 Région parisienne (Argenteuil)
+🎓 Bachelor UX/UI  
+💼 En recherche d'alternance Master (UX/UI Product Design)  
+📍 Région parisienne 
 
-📧 **Email** : [ton-email@exemple.com]  
-💼 **LinkedIn** : [linkedin.com/in/ton-profil]  
+📧 **Email** : [ylemdjedani95@icloud.com]  
+💼 **LinkedIn** : [[[linkedin.com/in/ton-profil]](https://www.linkedin.com/in/yn%C3%A8s-lemdjedani-7983543a6/)]
 🌐 **Portfolio** : [ton-site.com] *(optionnel)*  
 🐙 **GitHub** : [@Weinasii](https://github.com/Weinasii)
 
