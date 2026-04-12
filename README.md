@@ -158,17 +158,23 @@ Le projet s'appuie sur une recherche utilisateur approfondie avec **2 personas p
 
 ---
 
-## Contact
+## 📫 Contact
 
-**Ynes** Chef de Projet Digital (UX/UI Designer)  
-🎓 Bachelor UX/UI  
-💼 En recherche d'alternance Master (UX/UI Product Design)  
-📍 Région parisienne 
+**Ynes** — Chef de Projet Digital (UX/UI Designer)  
+🎓 Bachelor UX/UI — Digital Campus Paris  
+💼 En recherche d'alternance Master (Big Data & IA / UX/UI Product Design)  
+📍 Région parisienne
 
-📧 **Email** : ylemdjedani95@icloud.com 
-💼 **LinkedIn** : linkedin.com/in/ton-profil]](https://www.linkedin.com/in/yn%C3%A8s-lemdjedani-7983543a6/)
-🌐 **Portfolio** : https://weinasii.github.io/fitzen-landing-page-prototype/
-🐙 **GitHub** : @Weinasii](https://github.com/Weinasii)
+<div align="left">
+
+[![Email](https://img.shields.io/badge/Email-ylemddjedani95%40icloud.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ylemddjedani95@icloud.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ynes_Lemdjedani-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yn%C3%A8s-lemdjedani-7983543a6/)
+[![GitHub](https://img.shields.io/badge/GitHub-%40Weinasii-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Weinasii)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Fit%26Zen_Demo-22C4AE?style=for-the-badge&logo=safari&logoColor=white)](https://weinasii.github.io/fitzen-landing-page-prototype/)
+
+</div>
+
+---
 
 ---
 
