@@ -1,4 +1,4 @@
-# 🧘‍♀️ Fit&Zen - Prototype Page d'Accueil
+#Fit&Zen - Prototype Page d'Accueil
 
 ![Version](https://img.shields.io/badge/version-1.0.0-teal)
 ![License](https://img.shields.io/badge/license-Academic-blue)
