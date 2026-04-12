@@ -10,11 +10,11 @@
 
 ---
 
-## 🎯 À propos du projet
+## À propos du projet
 
 **Fit&Zen** est une application web française qui combine fitness et wellness pour accompagner les utilisateurs dans leur quête d'équilibre corps-esprit. Ce repository contient le prototype HTML/CSS/JS de la landing page, conçu pour démontrer l'identité visuelle, l'expérience utilisateur et les interactions clés du produit.
 
-### ✨ Fonctionnalités du prototype
+### Fonctionnalités du prototype
 
 - 🎨 **Design system complet** - Palette teal/dark, typographies harmonieuses
 - 📱 **Interface responsive** - Optimisée pour desktop (1440px) & mobile (390px)
@@ -31,7 +31,7 @@
 
 ---
 
-## 🎨 Design System
+## Design System
 
 ### Palette de couleurs
 
