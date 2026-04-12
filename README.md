@@ -6,7 +6,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-**Prototype interactif** d'une plateforme web dédiée au sport et au bien-être, développé dans le cadre de mon projet de Bachelor Chef de Projet Digital (UX/UI) à Digital Campus Paris.
+**Prototype interactif** d'une plateforme web dédiée au sport et au bien-être, développé dans le cadre de mon projet de Bachelor Chef de Projet Digital (UX/UI).
 
 ---
 
