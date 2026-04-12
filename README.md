@@ -25,9 +25,9 @@
 
 ---
 
-## 🚀 Démo en ligne
+## Démo en ligne
 
-👉 **[Voir le prototype live](https://weinasii.github.io/fitzen-landing-page-prototype/)**
+**[Voir le prototype live](https://weinasii.github.io/fitzen-landing-page-prototype/)**
 
 ---
 
