@@ -17,7 +17,7 @@
 ### ✨ Fonctionnalités du prototype
 
 - 🎨 **Design system complet** - Palette teal/dark, typographies harmonieuses
-- 📱 **Interface responsive** - Optimisée pour desktop (1440px)
+- 📱 **Interface responsive** - Optimisée pour desktop (1440px) & mobile (390px)
 - ✨ **Animations fluides** - Micro-interactions et transitions soignées
 - 🧭 **Navigation intuitive** - Tunnel de conversion optimisé
 - ♿ **Accessibilité** - Respect des standards WCAG
@@ -56,11 +56,11 @@
 
 ## Technologies utilisées
 
-- **HTML5** — Structure sémantique et accessible
-- **CSS3** — Design system, animations, responsive design
-- **JavaScript (Vanilla)** — Interactions dynamiques et micro-animations
-- **Git/GitHub** — Versioning et collaboration
-- **GitHub Pages** — Déploiement et hosting
+- **HTML5** - Structure sémantique et accessible
+- **CSS3** - Design system, animations, responsive design
+- **JavaScript (Vanilla)** - Interactions dynamiques et micro-animations
+- **Git/GitHub** - Versioning et collaboration
+- **GitHub Pages** - Déploiement et hosting
 
 ---
 
