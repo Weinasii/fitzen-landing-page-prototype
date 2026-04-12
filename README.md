@@ -115,7 +115,7 @@ Ce projet a été réalisé dans le cadre de mon **Bachelor Chef de Projet Digit
 - [x] Animations et micro-interactions
 - [x] Déploiement GitHub Pages
 
-### 🔮 Évolutions futures
+### Évolutions futures
 - [ ] Version mobile responsive complète
 - [ ] Pages intérieures (profil, dashboard, séances)
 - [ ] Intégration d'une API de contenu
