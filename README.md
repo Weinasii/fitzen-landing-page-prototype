@@ -160,7 +160,7 @@ Le projet s'appuie sur une recherche utilisateur approfondie avec **2 personas p
 
 ## 📫 Contact
 
-**Ynes** — Chef de Projet Digital (UX/UI Designer)  
+**Ynes** Chef de Projet Digital (UX/UI Designer)  
 🎓 Bachelor UX/UI — Digital Campus Paris  
 💼 En recherche d'alternance Master (Big Data & IA / UX/UI Product Design)  
 📍 Région parisienne
