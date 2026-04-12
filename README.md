@@ -167,7 +167,7 @@ Le projet s'appuie sur une recherche utilisateur approfondie avec **2 personas p
 
 📧 **Email** : [ylemdjedani95@icloud.com]  
 💼 **LinkedIn** : [[[linkedin.com/in/ton-profil]](https://www.linkedin.com/in/yn%C3%A8s-lemdjedani-7983543a6/)]
-🌐 **Portfolio** : [ton-site.com] *(optionnel)*  
+🌐 **Portfolio** : [[ton-site.com](https://weinasii.github.io/fitzen-landing-page-prototype/)] 
 🐙 **GitHub** : [@Weinasii](https://github.com/Weinasii)
 
 ---
